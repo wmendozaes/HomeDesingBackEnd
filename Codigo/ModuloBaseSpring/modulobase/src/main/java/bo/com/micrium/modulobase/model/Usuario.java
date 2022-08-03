@@ -23,10 +23,7 @@ import lombok.ToString;
 //import org.springframework.data.annotation.LastModifiedDate;
 //import org.springframework.data.annotation.Version;
 
-/**
- *
- * @author alepaco.maton
- */
+
 @ToString(exclude = "contrasena")
 @Data
 @AllArgsConstructor

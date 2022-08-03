@@ -5,20 +5,9 @@
  */
 package bo.com.micrium.modulobase.util;
 
-import bo.com.micrium.modulobase.model.Bitacora;
-import bo.com.micrium.modulobase.model.Etiqueta;
-import bo.com.micrium.modulobase.model.Grupo;
-import bo.com.micrium.modulobase.model.Parametro;
-import bo.com.micrium.modulobase.model.Rol;
-import bo.com.micrium.modulobase.model.TipoParametro;
-import bo.com.micrium.modulobase.model.Usuario;
-import bo.com.micrium.modulobase.resources.dto.BitacoraResponse;
-import bo.com.micrium.modulobase.resources.dto.EtiquetaResponse;
-import bo.com.micrium.modulobase.resources.dto.GrupoResponse;
-import bo.com.micrium.modulobase.resources.dto.ParametroResponse;
-import bo.com.micrium.modulobase.resources.dto.RolResponse;
-import bo.com.micrium.modulobase.resources.dto.TipoParametroResponse;
-import bo.com.micrium.modulobase.resources.dto.UsuarioResponse;
+import bo.com.micrium.modulobase.model.*;
+import bo.com.micrium.modulobase.resources.dto.*;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
@@ -61,4 +50,27 @@ public class ConvercionUtil implements Serializable {
         return new EtiquetaResponse(model.getId(), model.getLlave(), model.getValor(), model.getGrupo());
     }
 
+    public static ContratoTipoResponse convertir(ContratoTipo model) {
+        return  new ContratoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public  static DocumentoTipoResponse convertir(DocumentoTipo model) {
+        return  new DocumentoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public  static  PaisResponse convertir(Pais model) {
+        return  new PaisResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public static DepartamentoResponse convertir(Departamento model) {
+        return new DepartamentoResponse(model.getId(), model.getNombre(), model.getDescripcion(), model.getPaisID().getId(), model.getPaisID().getNombre());
+    }
+
+    public static ProvinciaResponse convertir(Provincia model) {
+        return new ProvinciaResponse(model.getId(), model.getNombre(), model.getDescripcion(), model.getDepartamentoID().getId(), model.getDepartamentoID().getNombre());
+    }
+
+    public static LocalidadResponse convertir(Localidad model) {
+        return  new LocalidadResponse(model.getId(), model.getNombre(), model.getDescripcion(), model.getProvinciaId().getId(), model.getProvinciaId().getNombre());
+    }
 }

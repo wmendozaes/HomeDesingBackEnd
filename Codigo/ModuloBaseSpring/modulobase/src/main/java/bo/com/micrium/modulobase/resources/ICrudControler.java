@@ -25,12 +25,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-/**
- *
- * @author alepaco.maton
- * @param <R>
- * @param <T>
- */
 public interface ICrudControler<R extends Serializable, T extends Serializable, P> {
 
     @GetMapping
