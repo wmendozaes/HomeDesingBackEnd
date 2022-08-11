@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "HD_TRABAJO_TIPO")
+@Entity(name = "HD_HERRAMIENTA_TIPO")
 public class HerramientaTipo implements Serializable {
 
     private static final long serialVersionUID = 1L;
