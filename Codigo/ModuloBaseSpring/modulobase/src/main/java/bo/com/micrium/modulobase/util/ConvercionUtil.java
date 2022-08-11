@@ -50,14 +50,6 @@ public class ConvercionUtil implements Serializable {
         return new EtiquetaResponse(model.getId(), model.getLlave(), model.getValor(), model.getGrupo());
     }
 
-    public static ContratoTipoResponse convertir(ContratoTipo model) {
-        return  new ContratoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
-    }
-
-    public  static DocumentoTipoResponse convertir(DocumentoTipo model) {
-        return  new DocumentoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
-    }
-
     public  static  PaisResponse convertir(Pais model) {
         return  new PaisResponse(model.getId(), model.getNombre(), model.getDescripcion());
     }
@@ -73,4 +65,33 @@ public class ConvercionUtil implements Serializable {
     public static LocalidadResponse convertir(Localidad model) {
         return  new LocalidadResponse(model.getId(), model.getNombre(), model.getDescripcion(), model.getProvinciaId().getId(), model.getProvinciaId().getNombre());
     }
+
+    public static TrabajoTipoResponse convertir(TrabajoTipo model) {
+        return new TrabajoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public static ProyectoTipoResponse convertir(ProyectoTipo model) {
+        return new ProyectoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public static ContratoTipoResponse convertir(ContratoTipo model) {
+        return  new ContratoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public  static DocumentoTipoResponse convertir(DocumentoTipo model) {
+        return  new DocumentoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public static VehiculoTipoResponse convertir(VehiculoTipo model) {
+        return new VehiculoTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public static HerramientaTipoResponse convertir(HerramientaTipo model) {
+        return new HerramientaTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
+    public static MaterialTipoResponse convertir(MaterialTipo model) {
+        return new MaterialTipoResponse(model.getId(), model.getNombre(), model.getDescripcion());
+    }
+
 }

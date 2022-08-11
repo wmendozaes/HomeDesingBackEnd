@@ -12,6 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContratoTipoRequest implements Serializable {
+
     private static final Long serialVersionUID = 1L;
 
     private String nombre;
