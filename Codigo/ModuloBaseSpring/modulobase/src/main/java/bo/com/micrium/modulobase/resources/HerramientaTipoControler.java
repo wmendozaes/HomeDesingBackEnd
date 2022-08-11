@@ -1,12 +1,12 @@
 package bo.com.micrium.modulobase.resources;
 
-import bo.com.micrium.modulobase.model.VehiculoTipo;
-import bo.com.micrium.modulobase.repository.IVehiculoTipoRepository;
-import bo.com.micrium.modulobase.resources.dto.VehiculoTipoRequest;
-import bo.com.micrium.modulobase.resources.dto.VehiculoTipoResponse;
+import bo.com.micrium.modulobase.model.HerramientaTipo;
+import bo.com.micrium.modulobase.repository.IHerramientaTipoRepository;
+import bo.com.micrium.modulobase.resources.dto.HerramientaTipoRequest;
+import bo.com.micrium.modulobase.resources.dto.HerramientaTipoResponse;
 import bo.com.micrium.modulobase.util.ConvercionUtil;
 import bo.com.micrium.modulobase.validator.ApiException;
-import bo.com.micrium.modulobase.validator.VehiculoTipoValidator;
+import bo.com.micrium.modulobase.validator.HerramientaTipoValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,18 +29,18 @@ import java.util.Optional;
 @Log4j2
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/vehiculos/tipos", produces = {MediaType.APPLICATION_JSON_VALUE})
-public class VehiculosTipoControler extends GenericControler implements ICrudControler<VehiculoTipoRequest, VehiculoTipoResponse, Integer> {
+@RequestMapping(value = "/herramientas/tipos", produces = {MediaType.APPLICATION_JSON_VALUE})
+public class HerramientaTipoControler extends GenericControler implements ICrudControler<HerramientaTipoRequest, HerramientaTipoResponse, Integer> {
 
     @Autowired
-    protected IVehiculoTipoRepository repository;
+    protected IHerramientaTipoRepository repository;
 
     @Autowired
-    protected VehiculoTipoValidator validator;
+    protected HerramientaTipoValidator validator;
 
 
     @Override
-    public Page<VehiculoTipoResponse> list(String token, String ipClient, String form, Pageable pageRequest) {
+    public Page<HerramientaTipoResponse> list(String token, String ipClient, String form, Pageable pageRequest) {
         if (ipClient == null || ipClient.isEmpty() || ipClient.equals("127.0.0.1") || ipClient.equals("localhost")) {
             ipClient = httpServletRequest.getRemoteAddr();
         }
@@ -57,7 +57,7 @@ public class VehiculosTipoControler extends GenericControler implements ICrudCon
 
         log.info(sb.toString());
 
-        Page<VehiculoTipoResponse> out = repository.findAllByEstadoIn(Arrays.asList(1), pageRequest).map(model -> ConvercionUtil.convertir(model));
+        Page<HerramientaTipoResponse> out = repository.findAllByEstadoIn(Arrays.asList(1), pageRequest).map(model -> ConvercionUtil.convertir(model));
         sb = new StringBuilder();
         sb.append("-------------------RESPONSE----------------------\n").
                 append("token ").append(token).append(", \n").
@@ -71,12 +71,12 @@ public class VehiculosTipoControler extends GenericControler implements ICrudCon
     }
 
     @Override
-    public ResponseEntity<VehiculoTipoResponse> get(String token, String ipClient, String form, Integer id) throws NoHandlerFoundException {
+    public ResponseEntity<HerramientaTipoResponse> get(String token, String ipClient, String form, Integer id) throws NoHandlerFoundException {
         return null;
     }
 
     @Override
-    public ResponseEntity<VehiculoTipoResponse> create(String token, String ipClient, String form, VehiculoTipoRequest request, BindingResult result) throws URISyntaxException, ApiException {
+    public ResponseEntity<HerramientaTipoResponse> create(String token, String ipClient, String form, HerramientaTipoRequest request, BindingResult result) throws URISyntaxException, ApiException {
         if (ipClient == null || ipClient.isEmpty() || ipClient.equals("127.0.0.1") || ipClient.equals("localhost")) {
             ipClient = httpServletRequest.getRemoteAddr();
         }
@@ -101,13 +101,13 @@ public class VehiculosTipoControler extends GenericControler implements ICrudCon
             throw new ApiException(result, "Errores en la validacion");
         }
 
-        VehiculoTipo model  = repository.save(new VehiculoTipo(null, request.getNombre(), request.getDescripcion(), 1));
+        HerramientaTipo model  = repository.save(new HerramientaTipo(null, request.getNombre(), request.getDescripcion(), 1));
 
         guardarBitacora(token, ipClient, form,
                 "Se adiciono:" + model);
 
-        ResponseEntity<VehiculoTipoResponse> out = ResponseEntity.created(
-                        new URI("/vehiculos/tipos/" + model.getId()))
+        ResponseEntity<HerramientaTipoResponse> out = ResponseEntity.created(
+                        new URI("/herramientas/tipos/" + model.getId()))
                 .body(ConvercionUtil.convertir(model));
 
         sb = new StringBuilder();
@@ -122,7 +122,7 @@ public class VehiculosTipoControler extends GenericControler implements ICrudCon
     }
 
     @Override
-    public ResponseEntity<VehiculoTipoResponse> update(String token, String ipClient, String form, VehiculoTipoRequest request, Integer id, BindingResult result) throws ApiException {
+    public ResponseEntity<HerramientaTipoResponse> update(String token, String ipClient, String form, HerramientaTipoRequest request, Integer id, BindingResult result) throws ApiException {
         if (ipClient == null || ipClient.isEmpty() || ipClient.equals("127.0.0.1") || ipClient.equals("localhost")) {
             ipClient = httpServletRequest.getRemoteAddr();
         }
@@ -146,7 +146,7 @@ public class VehiculosTipoControler extends GenericControler implements ICrudCon
             throw new ApiException(result, "Errores en la validacion");
         }
 
-        VehiculoTipo model = repository.findById(id).get();
+        HerramientaTipo model = repository.findById(id).get();
 
         model.setNombre(request.getNombre());
         model.setDescripcion(request.getDescripcion());
@@ -155,7 +155,7 @@ public class VehiculosTipoControler extends GenericControler implements ICrudCon
 
         guardarBitacora(token, ipClient, form, "Se modifico:" + model);
 
-        ResponseEntity<VehiculoTipoResponse> out = ResponseEntity.ok().body(ConvercionUtil.convertir(model));
+        ResponseEntity<HerramientaTipoResponse> out = ResponseEntity.ok().body(ConvercionUtil.convertir(model));
 
         sb = new StringBuilder();
         sb.append("-------------------RESPONSE----------------------\n").
@@ -186,13 +186,13 @@ public class VehiculosTipoControler extends GenericControler implements ICrudCon
 
         log.info(sb.toString());
 
-        Optional<VehiculoTipo> temp = repository.findById(id);
+        Optional<HerramientaTipo> temp = repository.findById(id);
 
         if (!temp.isPresent()) {
             throw new NoHandlerFoundException("DELETE", "/{id}" + id, HttpHeaders.EMPTY);
         }
 
-        VehiculoTipo model = temp.get();
+        HerramientaTipo model = temp.get();
 
         model.setEstado(0);
 

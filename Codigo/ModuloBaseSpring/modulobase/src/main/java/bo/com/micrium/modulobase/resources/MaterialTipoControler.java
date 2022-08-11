@@ -29,7 +29,7 @@ import java.util.Optional;
 @Log4j2
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/Materiales/tipos", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/materiales/tipos", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class MaterialTipoControler extends GenericControler implements ICrudControler<MaterialTipoRequest, MaterialTipoResponse, Integer> {
 
     @Autowired
