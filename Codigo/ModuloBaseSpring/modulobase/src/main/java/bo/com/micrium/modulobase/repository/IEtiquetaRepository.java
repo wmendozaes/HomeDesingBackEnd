@@ -15,10 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import bo.com.micrium.modulobase.model.Etiqueta;
 
-/**
- *
- * @author alepaco.maton
- */
+
 @Repository
 public interface IEtiquetaRepository extends JpaRepository<Etiqueta, Integer> {
 

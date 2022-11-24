@@ -11,10 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author alepaco.maton
- */
+
 @Repository
 public interface IFormularioRepository extends JpaRepository<Formulario, Integer> {
 
